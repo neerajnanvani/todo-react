@@ -8,10 +8,12 @@ const page = () => {
   const [todoDescription, setTodoDescription] = useState("");
 
   const [allTodos, setAllTodos] = useState(() => {
-    const localStorageTodos = localStorage.getItem("allTodos")
+    if (typeof window !== 'undefined') {
+      const localStorageTodos = localStorage.getItem("allTodos")
 
-    if(localStorageTodos) {
-      return[...JSON.parse(localStorageTodos)];
+      if(localStorageTodos) {
+        return[...JSON.parse(localStorageTodos)];
+      }
     }
     return [];
   });
